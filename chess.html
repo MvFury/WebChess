@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+table, th, td {
+  border: 2px solid black;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-size: 30px;
+}
+
+td.ch_black {
+  background-color: #c2c2c2;
+}
+
+.black-piece {
+    -webkit-text-stroke: 1px white;
+    text-stroke: 1px white;
+}
+</style>
+
+<head>
+<title>Chess Game</title>
+</head>
+<body>
+
+<h1>Game of chess</h1>
+
+<table>
+    <tr>
+    <td id="a8" ></td>
+    <td id="b8" class="ch_black"></td>
+    <td id="c8"></td>
+	<td id="d8" class="ch_black"></td>
+    <td id="e8"></td>
+    <td id="f8" class="ch_black"></td>
+	<td id="g8"></td>
+    <td id="h8" class="ch_black"></td>
+  </tr>
+  <tr>
+    <td id="a7" class="ch_black"></td>
+    <td id="b7"> </td>
+    <td id="c7" class="ch_black"></td>
+	<td id="d7" ></td>
+    <td id="e7" class="ch_black"></td>
+    <td id="f7"></td>
+	<td id="g7" class="ch_black"></td>
+    <td id="h7"></td>
+  </tr>
+  <tr>
+    <td id="a6" ></td>
+    <td id="b6" class="ch_black"></td>
+    <td id="c6"></td>
+	<td id="d6" class="ch_black"></td>
+    <td id="e6"></td>
+    <td id="f6" class="ch_black"></td>
+	<td id="g6"></td>
+    <td id="h6" class="ch_black"></td>
+  </tr>
+  <tr>
+    <td id="a5" class="ch_black"></td>
+    <td id="b5"> </td>
+    <td id="c5" class="ch_black"></td>
+	<td id="d5" ></td>
+    <td id="e5" class="ch_black"></td>
+    <td id="f5"></td>
+	<td id="g5" class="ch_black"></td>
+    <td id="h5"></td>
+  </tr>
+  <tr>
+    <td id="a4" ></td>
+    <td id="b4" class="ch_black"></td>
+    <td id="c4"></td>
+	<td id="d4" class="ch_black"></td>
+    <td id="e4"></td>
+    <td id="f4" class="ch_black"></td>
+	<td id="g4"></td>
+    <td id="h4" class="ch_black"></td>
+  </tr>
+  <tr>
+    <td id="a3" class="ch_black"></td>
+    <td id="b3"> </td>
+    <td id="c3" class="ch_black"></td>
+	<td id="d3" ></td>
+    <td id="e3" class="ch_black"></td>
+    <td id="f3"></td>
+	<td id="g3" class="ch_black"></td>
+    <td id="h3"></td>
+  </tr>
+  <tr>
+    <td id="a2" ></td>
+    <td id="b2" class="ch_black"></td>
+    <td id="c2"></td>
+	<td id="d2" class="ch_black"></td>
+    <td id="e2"></td>
+    <td id="f2" class="ch_black"></td>
+	<td id="g2"></td>
+    <td id="h2" class="ch_black"></td>
+  </tr>
+  <tr>
+    <td id="a1" class="ch_black"></td>
+    <td id="b1"> </td>
+    <td id="c1" class="ch_black"></td>
+	<td id="d1" ></td>
+    <td id="e1" class="ch_black"></td>
+    <td id="f1"></td>
+	<td id="g1" class="ch_black"></td>
+    <td id="h1"></td>
+  </tr>
+</table>
+
+<script>
+const pieces = [
+    { name: 'pawn', color: 'white', score: 1, location: 'a2', symbol: '♙', id: 'w-pawn-a' },
+	{ name: 'pawn', color: 'white', score: 1, location: 'b2', symbol: '♙', id: 'w-pawn-b' },
+	{ name: 'pawn', color: 'white', score: 1, location: 'c2', symbol: '♙', id: 'w-pawn-c' },
+	{ name: 'pawn', color: 'white', score: 1, location: 'd2', symbol: '♙', id: 'w-pawn-d' },
+	{ name: 'pawn', color: 'white', score: 1, location: 'e2', symbol: '♙', id: 'w-pawn-e' },
+	{ name: 'pawn', color: 'white', score: 1, location: 'f2', symbol: '♙', id: 'w-pawn-f' },
+	{ name: 'pawn', color: 'white', score: 1, location: 'g2', symbol: '♙', id: 'w-pawn-g' },
+	{ name: 'pawn', color: 'white', score: 1, location: 'h2', symbol: '♙', id: 'w-pawn-h' },
+	{ name: 'rook', color: 'white', score: 5, location: 'h1', symbol: '♖', id: 'w-K-rook' },
+	{ name: 'rook', color: 'white', score: 5, location: 'a1', symbol: '♖', id: 'w-Q-rook' },
+	{ name: 'knight', color: 'white', score: 3, location: 'g1', symbol: '♘', id: 'w-K-knight' },
+	{ name: 'knight', color: 'white', score: 3, location: 'b1', symbol: '♘', id: 'w-Q-knight' },
+	{ name: 'bishop', color: 'white', score: 3, location: 'f1', symbol: '♗', id: 'w-K-bishop' },
+	{ name: 'bishop', color: 'white', score: 3, location: 'c1', symbol: '♗', id: 'w-Q-bishop' },
+	{ name: 'queen', color: 'white', score: 8, location: 'd1', symbol: '♕', id: 'w-queen' },
+	{ name: 'king', color: 'white', score: 0, location: 'e1', symbol: '♔', id: 'w-king' },
+	
+	{ name: 'pawn', color: 'black', score: 1, location: 'a7', symbol: '♟', id: 'b-pawn-a' },
+	{ name: 'pawn', color: 'black', score: 1, location: 'b7', symbol: '♟', id: 'b-pawn-b' },
+	{ name: 'pawn', color: 'black', score: 1, location: 'c7', symbol: '♟', id: 'b-pawn-c' },
+	{ name: 'pawn', color: 'black', score: 1, location: 'd7', symbol: '♟', id: 'b-pawn-d' },
+	{ name: 'pawn', color: 'black', score: 1, location: 'e7', symbol: '♟', id: 'b-pawn-e' },
+	{ name: 'pawn', color: 'black', score: 1, location: 'f7', symbol: '♟', id: 'b-pawn-f' },
+	{ name: 'pawn', color: 'black', score: 1, location: 'g7', symbol: '♟', id: 'b-pawn-g' },
+	{ name: 'pawn', color: 'black', score: 1, location: 'h7', symbol: '♟', id: 'b-pawn-h' },
+	{ name: 'rook', color: 'black', score: 5, location: 'h8', symbol: '♜', id: 'b-K-rook' },
+	{ name: 'rook', color: 'black', score: 5, location: 'a8', symbol: '♜', id: 'b-Q-rook' },
+	{ name: 'knight', color: 'black', score: 3, location: 'g8', symbol: '♞', id: 'b-K-knight' },
+	{ name: 'knight', color: 'black', score: 3, location: 'b8', symbol: '♞', id: 'b-Q-knight' },
+	{ name: 'bishop', color: 'black', score: 3, location: 'f8', symbol: '♝', id: 'b-K-bishop' },
+	{ name: 'bishop', color: 'black', score: 3, location: 'c8', symbol: '♝', id: 'b-Q-bishop' },
+	{ name: 'queen', color: 'black', score: 8, location: 'd8', symbol: '♛', id: 'b-queen' },
+	{ name: 'king', color: 'black', score: 0, location: 'e8', symbol: '♚', id: 'b-king' }
+];
+
+let squaresClickable = false;
+let selectedPiece = null;
+
+
+function displayPieces() {
+ // First, clear all cells
+    const allCells = document.querySelectorAll('td');
+    allCells.forEach(cell => {
+        cell.innerHTML = '';
+    });
+	
+    pieces.forEach(piece => {
+        const cell = document.getElementById(piece.location);
+        if (cell) {
+            cell.innerHTML = `<span class="piece">${piece.symbol}</span>`;
+        }
+    });
+}
+
+/*function selectPiece(pieceId) {
+	event.stopPropagation();
+    selectedPiece = pieces.find(p => p.id === pieceId);
+    console.log('Selected:', selectedPiece.name, 'at', selectedPiece.location);
+	squaresClickable = true;
+}*/
+
+function selectSquare() {
+    const allCells = document.querySelectorAll('td');
+    allCells.forEach(cell => {
+        cell.addEventListener('click', function() {
+            handleSquareClick(cell.id);
+        });
+    });
+}
+
+function handleSquareClick(cellId) {
+    // Check if there's a piece on this square
+    const pieceOnSquare = pieces.find(p => p.location === cellId); //patikrina ar yra figura langely
+    
+    if (pieceOnSquare && !selectedPiece) { //figura and langelio yra, o rankoj tuscia
+        // Select the piece if no piece is currently selected
+        selectedPiece = pieceOnSquare;
+        console.log('Selected:', selectedPiece.name, 'at', selectedPiece.location);
+        squaresClickable = true;
+    } 
+	else if (pieceOnSquare && selectedPiece) {
+		console.log('There is a piece!');
+		selectedPiece = null;
+		squaresClickable = false;
+	}
+	else if (selectedPiece && squaresClickable) { //figura rankoj, galima deti
+        // Move the selected piece to this square
+        moveToSquare(cellId);
+    } 
+}
+
+function moveToSquare(cellId) {
+    if (selectedPiece && squaresClickable) {
+        selectedPiece.location = cellId;
+        displayPieces(); // Refresh the board
+        selectedPiece = null; // Deselect
+		squaresClickable = false;
+    }
+}
+
+// Call this after page loads
+selectSquare();
+displayPieces();
+
+
+</script>
+
+</body>
+</html>
+
+
