@@ -302,7 +302,45 @@ function handleSquareClick(cellId) {
 				});
 			}
 			
+			if(selectedPiece.name === 'knight') {
+				const currentFile = selectedPiece.location[0];
+				const currentRank = parseInt(selectedPiece.location[1]);
+				
+				
+				let availableMoves = [];
+				
+				availableMoves.push(String.fromCharCode(currentFile.charCodeAt(0) + 2) + (currentRank + 1));
+				availableMoves.push(String.fromCharCode(currentFile.charCodeAt(0) - 2) + (currentRank + 1));
+				availableMoves.push(String.fromCharCode(currentFile.charCodeAt(0) + 1) + (currentRank + 2));
+				availableMoves.push(String.fromCharCode(currentFile.charCodeAt(0) - 1) + (currentRank + 2));
+				availableMoves.push(String.fromCharCode(currentFile.charCodeAt(0) + 2) + (currentRank - 1));
+				availableMoves.push(String.fromCharCode(currentFile.charCodeAt(0) - 2) + (currentRank - 1));
+				availableMoves.push(String.fromCharCode(currentFile.charCodeAt(0) + 1) + (currentRank - 2));
+				availableMoves.push(String.fromCharCode(currentFile.charCodeAt(0) - 1) + (currentRank - 2));
+				
+				
+				availableMoves.forEach(move => { 
+				const pieceOnSquare = pieces.find(p => p.location === move);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(move);
+							if(cell){
+								cell.innerHTML += '○';
+							}
+						}
+					}
+					else{
+						const cell = document.getElementById(move);
+						if(cell) {
+							cell.innerHTML = '●';  // Normal moves
+						}
+					}
+				});
+			
+			}
     } 
+	
+		
 	//If a piece is selected and the square, where you want to put it already has a piece
 	else if (pieceOnSquare && selectedPiece) {
 		console.log('There is a piece here!');
@@ -310,11 +348,13 @@ function handleSquareClick(cellId) {
 		squaresClickable = false;
 		
 		allCells.forEach(cell => {
-			if(cell.innerHTML === '●' || cell.innerHTML === '○'){
-				cell.innerHTML = '';
-			}
-		});
+					//pattern = /♟|♜|♞|♝|♛|♚/g;
+						if(cell.innerHTML === '●' || cell.innerHTML.includes('○')){
+							 cell.innerHTML = cell.innerHTML.replace('●', '').replace('○', '');
+						}
+					});
 	}
+	
 	else if (selectedPiece && squaresClickable) {
 		allCells.forEach(cell => {
 			if(cell.id == cellId){
@@ -329,8 +369,9 @@ function handleSquareClick(cellId) {
 					squaresClickable = false;
 			
 					allCells.forEach(cell => {
-						if(cell.innerHTML === '●' || cell.innerHTML === '○'){
-							cell.innerHTML = '';
+					//pattern = /♟|♜|♞|♝|♛|♚/g;
+						if(cell.innerHTML === '●' || cell.innerHTML.includes('○')){
+							 cell.innerHTML = cell.innerHTML.replace('●', '').replace('○', '');
 						}
 					});
 				}
