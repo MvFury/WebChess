@@ -159,18 +159,20 @@ const pieces = [
 let squaresClickable = false;
 let selectedPiece = null;
 
-
+//This function handles the display of pieces, it's used to refresh the display after a move is done
 function displayPieces() {
- // First, clear all cells
+	
+//this few lines clean the display, so if a move is made the piece won't duplicate
     const allCells = document.querySelectorAll('td');
     allCells.forEach(cell => {
         cell.innerHTML = '';
     });
 	
+//This gets pieces(each and every one) object location and puts the piece there.	
     pieces.forEach(piece => {
         const cell = document.getElementById(piece.location);
         if (cell) {
-            cell.innerHTML = `<span class="piece">${piece.symbol}</span>`;
+            cell.innerHTML = piece.symbol;
         }
     });
 }
@@ -182,6 +184,7 @@ function displayPieces() {
 	squaresClickable = true;
 }*/
 
+//Listens for a click on the cell, when a click happens, it sends the clicked cell id to function
 function selectSquare() {
     const allCells = document.querySelectorAll('td');
     allCells.forEach(cell => {
@@ -191,24 +194,148 @@ function selectSquare() {
     });
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//THIS HANDLES HOW THE PIECES MOVE/ATTACK
 function handleSquareClick(cellId) {
+	// Check all cells
+	const allCells = document.querySelectorAll('td');
+	
     // Check if there's a piece on this square
-    const pieceOnSquare = pieces.find(p => p.location === cellId); //patikrina ar yra figura langely
-    
-    if (pieceOnSquare && !selectedPiece) { //figura and langelio yra, o rankoj tuscia
+    const pieceOnSquare = pieces.find(p => p.location === cellId);
+		
+	if(!pieceOnSquare && !selectedPiece) {
+		console.log('Empty cell!')
+	}
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//THIS SHOWS THE AVAILABLE MOVES FOR A PIECE
+    else if (pieceOnSquare && !selectedPiece) {
         // Select the piece if no piece is currently selected
         selectedPiece = pieceOnSquare;
         console.log('Selected:', selectedPiece.name, 'at', selectedPiece.location);
         squaresClickable = true;
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//THIS GOES FOR PAWN
+			if(selectedPiece.name === 'pawn') {
+			
+				const currentFile = selectedPiece.location[0];  
+				const currentRank = parseInt(selectedPiece.location[1]); 
+    
+				let validSquares = [];
+				let captureSquares = [];
+				//WHITE PAWN MOVES
+				if(selectedPiece.color === 'white') {
+					// White pawns move "up" (rank numbers are being added up)
+					
+					// Check one square forward
+					const oneForward = currentFile + (currentRank + 1);
+					const pieceOneForward = pieces.find(p => p.location === oneForward);
+					
+					if(!pieceOneForward) {  // No piece blocking
+						validSquares.push(oneForward);
+					
+						 // Check two squares forward (only if one square is clear)
+						if(currentRank === 2) {
+						const twoForward = currentFile + (currentRank + 2);
+						const pieceTwoForward = pieces.find(p => p.location === twoForward);
+							if(!pieceTwoForward) {
+								validSquares.push(twoForward);
+							}
+						}
+					} 
+				
+				 // Check diagonal captures
+					const leftCapture = String.fromCharCode(currentFile.charCodeAt(0) - 1) + (currentRank + 1);
+					const rightCapture = String.fromCharCode(currentFile.charCodeAt(0) + 1) + (currentRank + 1);
+        
+					[leftCapture, rightCapture].forEach(square => {
+					const pieceOnSquare = pieces.find(p => p.location === square);
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color) {
+							captureSquares.push(square);
+						}
+					});
+        
+				} 
+				//BLACK PAWN MOVES
+				else {
+					const oneForward = currentFile + (currentRank - 1);
+					const pieceOneForward = pieces.find(p => p.location === oneForward);
+					
+					if(!pieceOneForward) {  // No piece blocking
+						validSquares.push(oneForward);
+					
+						 // Check two squares forward (only if one square is clear)
+						if(currentRank === 7) {
+						const twoForward = currentFile + (currentRank - 2);
+						const pieceTwoForward = pieces.find(p => p.location === twoForward);
+							if(!pieceTwoForward) {
+								validSquares.push(twoForward);
+							}
+						}
+					} 
+					
+					// Check diagonal captures
+					const leftCapture = String.fromCharCode(currentFile.charCodeAt(0) - 1) + (currentRank - 1);
+					const rightCapture = String.fromCharCode(currentFile.charCodeAt(0) + 1) + (currentRank - 1);
+        
+					[leftCapture, rightCapture].forEach(square => {
+					const pieceOnSquare = pieces.find(p => p.location === square);
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color) {
+							captureSquares.push(square);
+						}
+					});
+				}
+				
+				// Mark valid move squares
+				validSquares.forEach(squareId => {
+				const cell = document.getElementById(squareId);
+					if(cell) {
+						cell.innerHTML = '●';  // Normal moves
+					}
+				});
+    
+				// Mark capture squares
+				captureSquares.forEach(squareId => {
+				const cell = document.getElementById(squareId);
+					if(cell) {
+						cell.innerHTML += '○';  // Captures
+					}
+				});
+			}
+			
     } 
+	//If a piece is selected and the square, where you want to put it already has a piece
 	else if (pieceOnSquare && selectedPiece) {
-		console.log('There is a piece!');
+		console.log('There is a piece here!');
 		selectedPiece = null;
 		squaresClickable = false;
+		
+		allCells.forEach(cell => {
+			if(cell.innerHTML === '●' || cell.innerHTML === '○'){
+				cell.innerHTML = '';
+			}
+		});
 	}
-	else if (selectedPiece && squaresClickable) { //figura rankoj, galima deti
-        // Move the selected piece to this square
-        moveToSquare(cellId);
+	else if (selectedPiece && squaresClickable) {
+		allCells.forEach(cell => {
+			if(cell.id == cellId){
+				if(cell.innerHTML == '●' || cell.innerHTML == '○'){
+					// Move the selected piece to this square
+					console.log(cell.innerHTML);
+					moveToSquare(cellId);
+				}	
+				else{
+					console.log('Can\'t move there, mate');
+					selectedPiece = null;
+					squaresClickable = false;
+			
+					allCells.forEach(cell => {
+						if(cell.innerHTML === '●' || cell.innerHTML === '○'){
+							cell.innerHTML = '';
+						}
+					});
+				}
+			}
+		});
     } 
 }
 
