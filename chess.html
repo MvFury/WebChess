@@ -214,11 +214,10 @@ function handleSquareClick(cellId) {
         console.log('Selected:', selectedPiece.name, 'at', selectedPiece.location);
         squaresClickable = true;
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		const currentFile = selectedPiece.location[0];
+		const currentRank = parseInt(selectedPiece.location[1]);
 		//THIS GOES FOR PAWN
 			if(selectedPiece.name === 'pawn') {
-			
-				const currentFile = selectedPiece.location[0];  
-				const currentRank = parseInt(selectedPiece.location[1]); 
     
 				let validSquares = [];
 				let captureSquares = [];
@@ -303,9 +302,6 @@ function handleSquareClick(cellId) {
 			}
 			
 			if(selectedPiece.name === 'knight') {
-				const currentFile = selectedPiece.location[0];
-				const currentRank = parseInt(selectedPiece.location[1]);
-				
 				
 				let availableMoves = [];
 				
@@ -338,6 +334,58 @@ function handleSquareClick(cellId) {
 				});
 			
 			}
+			
+			if(selectedPiece.name === 'bishop'){
+				
+				let rightDiagonalUp = [];
+				let leftDiagonalUp = [];
+								
+				for(let i=1; i<9; i++){
+					rightDiagonalUp.push(String.fromCharCode(currentFile.charCodeAt(0) + i) + (currentRank + i));
+					const pieceOnSquare = pieces.find(p => p.location === rightDiagonalUp[i-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(rightDiagonalUp[i-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+						else{
+							const cell = document.getElementById(rightDiagonalUp[i-1]);
+								if(cell) {
+									cell.innerHTML = '●';  // Normal moves
+								}
+						}
+					
+					
+				}
+				
+				for(let j=1; j<9; j++){
+					leftDiagonalUp.push(String.fromCharCode(currentFile.charCodeAt(0) - j) + (currentRank + j));
+					const pieceOnSquare = pieces.find(p => p.location === leftDiagonalUp[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(leftDiagonalUp[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(leftDiagonalUp[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+				
+			}
     } 
 	
 		
@@ -348,11 +396,10 @@ function handleSquareClick(cellId) {
 		squaresClickable = false;
 		
 		allCells.forEach(cell => {
-					//pattern = /♟|♜|♞|♝|♛|♚/g;
-						if(cell.innerHTML === '●' || cell.innerHTML.includes('○')){
-							 cell.innerHTML = cell.innerHTML.replace('●', '').replace('○', '');
-						}
-					});
+			if(cell.innerHTML === '●' || cell.innerHTML.includes('○')){
+					cell.innerHTML = cell.innerHTML.replace('●', '').replace('○', '');
+			}
+		});
 	}
 	
 	else if (selectedPiece && squaresClickable) {
@@ -369,7 +416,6 @@ function handleSquareClick(cellId) {
 					squaresClickable = false;
 			
 					allCells.forEach(cell => {
-					//pattern = /♟|♜|♞|♝|♛|♚/g;
 						if(cell.innerHTML === '●' || cell.innerHTML.includes('○')){
 							 cell.innerHTML = cell.innerHTML.replace('●', '').replace('○', '');
 						}
