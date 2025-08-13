@@ -339,6 +339,8 @@ function handleSquareClick(cellId) {
 				
 				let rightDiagonalUp = [];
 				let leftDiagonalUp = [];
+				let leftDiagonalDown = [];
+				let rightDiagonalDown = [];
 								
 				for(let i=1; i<9; i++){
 					rightDiagonalUp.push(String.fromCharCode(currentFile.charCodeAt(0) + i) + (currentRank + i));
@@ -385,8 +387,526 @@ function handleSquareClick(cellId) {
 					
 				}
 				
+				for(let j=1; j<9; j++){
+					leftDiagonalDown.push(String.fromCharCode(currentFile.charCodeAt(0) - j) + (currentRank - j));
+					const pieceOnSquare = pieces.find(p => p.location === leftDiagonalDown[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(leftDiagonalDown[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(leftDiagonalDown[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+				
+				for(let j=1; j<9; j++){
+					rightDiagonalDown.push(String.fromCharCode(currentFile.charCodeAt(0) + j) + (currentRank - j));
+					const pieceOnSquare = pieces.find(p => p.location === rightDiagonalDown[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(rightDiagonalDown[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(rightDiagonalDown[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+				
 			}
-    } 
+			
+			if(selectedPiece.name === 'rook'){
+				
+				let = upLine = [];
+				let = downLine = [];
+				let = leftLine = [];
+				let = rightLine = [];
+				
+				for(let j=1; j<9; j++){
+					upLine.push(currentFile + (currentRank + j));
+					const pieceOnSquare = pieces.find(p => p.location === upLine[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(upLine[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(upLine[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+				
+				for(let j=1; j<9; j++){
+					downLine.push(currentFile + (currentRank - j));
+					const pieceOnSquare = pieces.find(p => p.location === downLine[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(downLine[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(downLine[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+				
+				for(let j=1; j<9; j++){
+					leftLine.push(String.fromCharCode(currentFile.charCodeAt(0) - j) + currentRank);
+					const pieceOnSquare = pieces.find(p => p.location === leftLine[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(leftLine[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(leftLine[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+				
+				for(let j=1; j<9; j++){
+					rightLine.push(String.fromCharCode(currentFile.charCodeAt(0) + j) + currentRank);
+					const pieceOnSquare = pieces.find(p => p.location === rightLine[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(rightLine[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(rightLine[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+				
+			}
+			
+			if(selectedPiece.name === 'queen'){
+				let upLine = [];
+				let downLine = [];
+				let leftLine = [];
+				let rightLine = [];
+				let leftDiagonalUp = [];
+				let rightDiagonalUp = [];
+				let rightDiagonalDown = [];
+				let leftDiagonalDown = [];
+				
+				for(let j=1; j<9; j++){
+					upLine.push(currentFile + (currentRank + j));
+					const pieceOnSquare = pieces.find(p => p.location === upLine[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(upLine[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(upLine[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+				
+				for(let j=1; j<9; j++){
+					downLine.push(currentFile + (currentRank - j));
+					const pieceOnSquare = pieces.find(p => p.location === downLine[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(downLine[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(downLine[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+				
+				for(let j=1; j<9; j++){
+					leftLine.push(String.fromCharCode(currentFile.charCodeAt(0) - j) + currentRank);
+					const pieceOnSquare = pieces.find(p => p.location === leftLine[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(leftLine[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(leftLine[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+				
+				for(let j=1; j<9; j++){
+					rightLine.push(String.fromCharCode(currentFile.charCodeAt(0) + j) + currentRank);
+					const pieceOnSquare = pieces.find(p => p.location === rightLine[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(rightLine[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(rightLine[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+				
+				for(let i=1; i<9; i++){
+					rightDiagonalUp.push(String.fromCharCode(currentFile.charCodeAt(0) + i) + (currentRank + i));
+					const pieceOnSquare = pieces.find(p => p.location === rightDiagonalUp[i-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(rightDiagonalUp[i-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+						else{
+							const cell = document.getElementById(rightDiagonalUp[i-1]);
+								if(cell) {
+									cell.innerHTML = '●';  // Normal moves
+								}
+						}
+					
+					
+				}
+				
+				for(let j=1; j<9; j++){
+					leftDiagonalUp.push(String.fromCharCode(currentFile.charCodeAt(0) - j) + (currentRank + j));
+					const pieceOnSquare = pieces.find(p => p.location === leftDiagonalUp[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(leftDiagonalUp[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(leftDiagonalUp[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+				
+				for(let j=1; j<9; j++){
+					leftDiagonalDown.push(String.fromCharCode(currentFile.charCodeAt(0) - j) + (currentRank - j));
+					const pieceOnSquare = pieces.find(p => p.location === leftDiagonalDown[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(leftDiagonalDown[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(leftDiagonalDown[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+				
+				for(let j=1; j<9; j++){
+					rightDiagonalDown.push(String.fromCharCode(currentFile.charCodeAt(0) + j) + (currentRank - j));
+					const pieceOnSquare = pieces.find(p => p.location === rightDiagonalDown[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(rightDiagonalDown[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(rightDiagonalDown[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+			}
+			
+			if(selectedPiece.name == 'king'){
+				let upLine = [];
+				let downLine = [];
+				let leftLine = [];
+				let rightLine = [];
+				let leftDiagonalUp = [];
+				let rightDiagonalUp = [];
+				let rightDiagonalDown = [];
+				let leftDiagonalDown = [];
+				
+				for(let j=1; j<2; j++){
+					upLine.push(currentFile + (currentRank + j));
+					const pieceOnSquare = pieces.find(p => p.location === upLine[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(upLine[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(upLine[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+				
+				for(let j=1; j<2; j++){
+					downLine.push(currentFile + (currentRank - j));
+					const pieceOnSquare = pieces.find(p => p.location === downLine[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(downLine[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(downLine[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+				
+				for(let j=1; j<2; j++){
+					leftLine.push(String.fromCharCode(currentFile.charCodeAt(0) - j) + currentRank);
+					const pieceOnSquare = pieces.find(p => p.location === leftLine[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(leftLine[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(leftLine[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+				
+				for(let j=1; j<2; j++){
+					rightLine.push(String.fromCharCode(currentFile.charCodeAt(0) + j) + currentRank);
+					const pieceOnSquare = pieces.find(p => p.location === rightLine[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(rightLine[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(rightLine[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+				
+				for(let i=1; i<2; i++){
+					rightDiagonalUp.push(String.fromCharCode(currentFile.charCodeAt(0) + i) + (currentRank + i));
+					const pieceOnSquare = pieces.find(p => p.location === rightDiagonalUp[i-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(rightDiagonalUp[i-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+						else{
+							const cell = document.getElementById(rightDiagonalUp[i-1]);
+								if(cell) {
+									cell.innerHTML = '●';  // Normal moves
+								}
+						}
+					
+					
+				}
+				
+				for(let j=1; j<2; j++){
+					leftDiagonalUp.push(String.fromCharCode(currentFile.charCodeAt(0) - j) + (currentRank + j));
+					const pieceOnSquare = pieces.find(p => p.location === leftDiagonalUp[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(leftDiagonalUp[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(leftDiagonalUp[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+				
+				for(let j=1; j<2; j++){
+					leftDiagonalDown.push(String.fromCharCode(currentFile.charCodeAt(0) - j) + (currentRank - j));
+					const pieceOnSquare = pieces.find(p => p.location === leftDiagonalDown[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(leftDiagonalDown[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(leftDiagonalDown[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+				
+				for(let j=1; j<2; j++){
+					rightDiagonalDown.push(String.fromCharCode(currentFile.charCodeAt(0) + j) + (currentRank - j));
+					const pieceOnSquare = pieces.find(p => p.location === rightDiagonalDown[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== selectedPiece.color){
+							const cell = document.getElementById(rightDiagonalDown[j-1]);
+								if(cell){
+									cell.innerHTML += '○';
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(rightDiagonalDown[j-1]);
+							if(cell) {
+								cell.innerHTML = '●';  // Normal moves
+							}
+					}
+					
+				}
+			}
+			
+	} 
 	
 		
 	//If a piece is selected and the square, where you want to put it already has a piece
@@ -407,7 +927,6 @@ function handleSquareClick(cellId) {
 			if(cell.id == cellId){
 				if(cell.innerHTML == '●' || cell.innerHTML == '○'){
 					// Move the selected piece to this square
-					console.log(cell.innerHTML);
 					moveToSquare(cellId);
 				}	
 				else{
@@ -429,6 +948,15 @@ function handleSquareClick(cellId) {
 function moveToSquare(cellId) {
     if (selectedPiece && squaresClickable) {
         selectedPiece.location = cellId;
+		
+		const whiteRook = pieces.find(p => p.id === 'w-Q-rook');
+		
+		if(selectedPiece.name == 'king' && cellId == 'd1' && whiteRook.location == 'a1'){
+			selectedPiece.location = 'b1';
+			
+			whiteRook.location = 'c1';
+		} 
+		
         displayPieces(); // Refresh the board
         selectedPiece = null; // Deselect
 		squaresClickable = false;
