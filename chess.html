@@ -156,8 +156,18 @@ const pieces = [
 	{ name: 'king', color: 'black', score: 0, location: 'e8', symbol: '♚', id: 'b-king' }
 ];
 
+//Names are self explanatory
+let contestedPieces = [];
+let contestedSquares = [];
+
 let squaresClickable = false;
 let selectedPiece = null;
+
+//This used for Quenn and King side castling check
+let Qw_piecesHaveMoved = false;
+let Kw_piecesHaveMoved = false;
+let Qb_piecesHaveMoved = false;
+let Kb_piecesHaveMoved = false;
 
 //This function handles the display of pieces, it's used to refresh the display after a move is done
 function displayPieces() {
@@ -184,6 +194,142 @@ function displayPieces() {
 	squaresClickable = true;
 }*/
 
+//Checks all the available moves
+function checkMoves() {
+	pieces.forEach(piece =>{
+	
+		const currentFile = piece.location[0];
+		const currentRank = parseInt(piece.location[1]);
+	
+		if(piece.name == "pawn"){
+		
+			//WHITE PAWN MOVES
+			if(piece.color === 'white') {
+				// White pawns move "up" (rank numbers are being added up)
+					
+				// Check one square forward
+				const oneForward = currentFile + (currentRank + 1);
+				const pieceOneForward = pieces.find(p => p.location === oneForward);
+					
+				if(!pieceOneForward) {  // No piece blocking
+					contestedSquares.push({
+						name: piece.id,
+						contestedSquare: oneForward
+					});
+					
+					 // Check two squares forward (only if one square is clear)
+					if(currentRank === 2) {
+					const twoForward = currentFile + (currentRank + 2);
+					const pieceTwoForward = pieces.find(p => p.location === twoForward);
+					
+						if(!pieceTwoForward) {
+							contestedSquares.push({
+								name: piece.id,
+								contestedSquare: twoForward
+							});
+						}
+					}
+				} 
+				
+				// Check diagonal captures
+				const leftCapture = String.fromCharCode(currentFile.charCodeAt(0) - 1) + (currentRank + 1);
+				const rightCapture = String.fromCharCode(currentFile.charCodeAt(0) + 1) + (currentRank + 1);
+        
+				[leftCapture, rightCapture].forEach(square => {
+					const pieceOnSquare = pieces.find(p => p.location === square);
+						if(pieceOnSquare && pieceOnSquare.color !== piece.color) {
+							contestedPieces.push({
+								name: pieceOnSquare.id,
+								contestedPieceLoc: square
+							});
+						}
+					});
+        
+				} 
+				//BLACK PAWN MOVES
+				else {
+					const oneForward = currentFile + (currentRank - 1);
+					const pieceOneForward = pieces.find(p => p.location === oneForward);
+					
+					if(!pieceOneForward) {  // No piece blocking
+						contestedSquares.push({
+						name: piece.id,
+						contestedSquare: oneForward
+					});
+					
+						 // Check two squares forward (only if one square is clear)
+						if(currentRank === 7) {
+						const twoForward = currentFile + (currentRank - 2);
+						const pieceTwoForward = pieces.find(p => p.location === twoForward);
+							if(!pieceTwoForward) {
+								contestedSquares.push({
+								name: piece.id,
+								contestedSquare: twoForward
+								});
+							}
+						}
+					} 
+					
+					// Check diagonal captures
+					const leftCapture = String.fromCharCode(currentFile.charCodeAt(0) - 1) + (currentRank - 1);
+					const rightCapture = String.fromCharCode(currentFile.charCodeAt(0) + 1) + (currentRank - 1);
+        
+					[leftCapture, rightCapture].forEach(square => {
+					const pieceOnSquare = pieces.find(p => p.location === square);
+						if(pieceOnSquare && pieceOnSquare.color !== piece.color) {
+							contestedPieces.push({
+								name: pieceOnSquare.id,
+								contestedPieceLoc: square
+							});
+						}
+					});
+				}
+		}
+		
+		if(piece.name === 'knight') {
+				
+				let availableMoves = [];
+				
+				availableMoves.push(String.fromCharCode(currentFile.charCodeAt(0) + 2) + (currentRank + 1));
+				availableMoves.push(String.fromCharCode(currentFile.charCodeAt(0) - 2) + (currentRank + 1));
+				availableMoves.push(String.fromCharCode(currentFile.charCodeAt(0) + 1) + (currentRank + 2));
+				availableMoves.push(String.fromCharCode(currentFile.charCodeAt(0) - 1) + (currentRank + 2));
+				availableMoves.push(String.fromCharCode(currentFile.charCodeAt(0) + 2) + (currentRank - 1));
+				availableMoves.push(String.fromCharCode(currentFile.charCodeAt(0) - 2) + (currentRank - 1));
+				availableMoves.push(String.fromCharCode(currentFile.charCodeAt(0) + 1) + (currentRank - 2));
+				availableMoves.push(String.fromCharCode(currentFile.charCodeAt(0) - 1) + (currentRank - 2));
+				
+				
+				availableMoves.forEach(move => { 
+				const pieceOnSquare = pieces.find(p => p.location === move);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== piece.color){
+							const cell = document.getElementById(move);
+							if(cell){
+								contestedPieces.push({
+									name: pieceOnSquare.id,
+									contestedPieceLoc: move
+								});
+							}
+						}
+					}
+					else{
+						const cell = document.getElementById(move);
+						if(cell) {
+							contestedSquares.push({
+								name: piece.id,
+								contestedSquare: move
+							});
+						}
+					}
+				});
+				console.log(contestedPieces);
+			}
+			
+	
+	});
+}
+
 //Listens for a click on the cell, when a click happens, it sends the clicked cell id to function
 function selectSquare() {
     const allCells = document.querySelectorAll('td');
@@ -207,7 +353,7 @@ function handleSquareClick(cellId) {
 		console.log('Empty cell!')
 	}
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//THIS SHOWS THE AVAILABLE MOVES FOR A PIECE
+	//THIS SHOWS THE AVAILABLE MOVES FOR A PIECE 
     else if (pieceOnSquare && !selectedPiece) {
         // Select the piece if no piece is currently selected
         selectedPiece = pieceOnSquare;
@@ -945,28 +1091,61 @@ function handleSquareClick(cellId) {
     } 
 }
 
+function isKingInCheck(kingColor) {
+   // Find the king of the specified color
+   const king = pieces.find(p => p.name === 'king' && p.color === kingColor);
+   
+   if (!king) {
+       return false; // King not found
+   }
+   
+   // Check if any contested piece is this king
+   return contestedPieces.some(contest => contest.name === king.id);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////AS OF NOW THIS FUNCTION HANDLES MOVE'S END, meaning when this function is complete the display is reset
+/////ALSO CASTLING
 function moveToSquare(cellId) {
     if (selectedPiece && squaresClickable) {
-        selectedPiece.location = cellId;
-		
-		const whiteRook = pieces.find(p => p.id === 'w-Q-rook');
-		
-		if(selectedPiece.name == 'king' && cellId == 'd1' && whiteRook.location == 'a1'){
-			selectedPiece.location = 'b1';
+        
+		//QUEEN SIDE CASTLING	
+		if(isKingInCheck('white')){
+			console.log('CONTESTED!')
+		}
 			
+		const whiteRook = pieces.find(p => p.id === 'w-Q-rook');
+				
+		if(selectedPiece.name == 'king' && selectedPiece.location == 'd1' && whiteRook.location == 'a1' && isKingInCheck('white') == false){
+			
+			selectedPiece.location = 'b1';
 			whiteRook.location = 'c1';
 		} 
 		
+		selectedPiece.location = cellId;
+		
+		if(selectPiece.id == 'W-Q-bishop' || selectPiece.id == 'W-Q-knight'){
+			
+		}
+		if(selectPiece.id == 'B-Q-bishop' || selectPiece.id == 'B-Q-knight'){
+				
+		}
+		
+		/////////////////////////////////////////////////////////////////////////////////////////////
+		///This part is move's end phase, cleaning up the variables, refreshing display
         displayPieces(); // Refresh the board
         selectedPiece = null; // Deselect
 		squaresClickable = false;
+		
+		contestedPieces = [];
+		contestedSquares = [];
+		
+		checkMoves();
     }
 }
 
-// Call this after page loads
 selectSquare();
 displayPieces();
-
 
 </script>
 
