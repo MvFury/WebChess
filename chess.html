@@ -3,6 +3,29 @@
 
 <style>
 
+.coordinate-wrapper {
+  border-collapse: collapse;
+}
+.file-coord {
+  width: 50px;
+  height: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px !important;
+  border: none;
+  background-color: #f0f0f0;
+}
+
+.rank-coord {
+  width: 20px;
+  height: 50px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px !important;
+  border: none;
+  background-color: #f0f0f0;
+}
+
 table {
   border-collapse: collapse;
   table-layout: fixed;
@@ -36,88 +59,108 @@ td.ch_black {
 
 <h1>Game of chess</h1>
 
-<table>
-    <tr>
-    <td id="a8" ></td>
-    <td id="b8" class="ch_black"></td>
-    <td id="c8"></td>
-	<td id="d8" class="ch_black"></td>
-    <td id="e8"></td>
-    <td id="f8" class="ch_black"></td>
-	<td id="g8"></td>
-    <td id="h8" class="ch_black"></td>
+<table class="coordinate-wrapper">
+			<tr>
+				<td class="rank-coord">8</td>
+				<td id="a8" ></td>
+				<td id="b8" class="ch_black"></td>
+				<td id="c8"></td>
+				<td id="d8" class="ch_black"></td>
+				<td id="e8"></td>
+				<td id="f8" class="ch_black"></td>
+				<td id="g8"></td>
+				<td id="h8" class="ch_black"></td>
+			</tr>
+		  <tr>
+			<td class="rank-coord">7</td>
+			<td id="a7" class="ch_black"></td>
+			<td id="b7"> </td>
+			<td id="c7" class="ch_black"></td>
+			<td id="d7" ></td>
+			<td id="e7" class="ch_black"></td>
+			<td id="f7"></td>
+			<td id="g7" class="ch_black"></td>
+			<td id="h7"></td>
+		  </tr>
+		  <tr>
+			<td class="rank-coord">6</td>
+			<td id="a6" ></td>
+			<td id="b6" class="ch_black"></td>
+			<td id="c6"></td>
+			<td id="d6" class="ch_black"></td>
+			<td id="e6"></td>
+			<td id="f6" class="ch_black"></td>
+			<td id="g6"></td>
+			<td id="h6" class="ch_black"></td>
+		  </tr>
+		  <tr>
+			<td class="rank-coord">5</td>
+			<td id="a5" class="ch_black"></td>
+			<td id="b5"> </td>
+			<td id="c5" class="ch_black"></td>
+			<td id="d5" ></td>
+			<td id="e5" class="ch_black"></td>
+			<td id="f5"></td>
+			<td id="g5" class="ch_black"></td>
+			<td id="h5"></td>
+		  </tr>
+		  <tr>
+			<td class="rank-coord">4</td>
+			<td id="a4" ></td>
+			<td id="b4" class="ch_black"></td>
+			<td id="c4"></td>
+			<td id="d4" class="ch_black"></td>
+			<td id="e4"></td>
+			<td id="f4" class="ch_black"></td>
+			<td id="g4"></td>
+			<td id="h4" class="ch_black"></td>
+		  </tr>
+		  <tr>
+			<td class="rank-coord">3</td>
+			<td id="a3" class="ch_black"></td>
+			<td id="b3"> </td>
+			<td id="c3" class="ch_black"></td>
+			<td id="d3" ></td>
+			<td id="e3" class="ch_black"></td>
+			<td id="f3"></td>
+			<td id="g3" class="ch_black"></td>
+			<td id="h3"></td>
+		  </tr>
+		  <tr>
+			<td class="rank-coord">2</td>
+			<td id="a2" ></td>
+			<td id="b2" class="ch_black"></td>
+			<td id="c2"></td>
+			<td id="d2" class="ch_black"></td>
+			<td id="e2"></td>
+			<td id="f2" class="ch_black"></td>
+			<td id="g2"></td>
+			<td id="h2" class="ch_black"></td>
+		  </tr>
+		  <tr>
+			<td class="rank-coord">1</td>
+			<td id="a1" class="ch_black"></td>
+			<td id="b1"> </td>
+			<td id="c1" class="ch_black"></td>
+			<td id="d1" ></td>
+			<td id="e1" class="ch_black"></td>
+			<td id="f1"></td>
+			<td id="g1" class="ch_black"></td>
+			<td id="h1"></td>
+		  </tr>
+		  <tr>
+    <td class="file-coord"></td>
+	<td class="file-coord">a</td>
+    <td class="file-coord">b</td>
+    <td class="file-coord">c</td>
+    <td class="file-coord">d</td>
+    <td class="file-coord">e</td>
+    <td class="file-coord">f</td>
+    <td class="file-coord">g</td>
+    <td class="file-coord">h</td>
   </tr>
-  <tr>
-    <td id="a7" class="ch_black"></td>
-    <td id="b7"> </td>
-    <td id="c7" class="ch_black"></td>
-	<td id="d7" ></td>
-    <td id="e7" class="ch_black"></td>
-    <td id="f7"></td>
-	<td id="g7" class="ch_black"></td>
-    <td id="h7"></td>
-  </tr>
-  <tr>
-    <td id="a6" ></td>
-    <td id="b6" class="ch_black"></td>
-    <td id="c6"></td>
-	<td id="d6" class="ch_black"></td>
-    <td id="e6"></td>
-    <td id="f6" class="ch_black"></td>
-	<td id="g6"></td>
-    <td id="h6" class="ch_black"></td>
-  </tr>
-  <tr>
-    <td id="a5" class="ch_black"></td>
-    <td id="b5"> </td>
-    <td id="c5" class="ch_black"></td>
-	<td id="d5" ></td>
-    <td id="e5" class="ch_black"></td>
-    <td id="f5"></td>
-	<td id="g5" class="ch_black"></td>
-    <td id="h5"></td>
-  </tr>
-  <tr>
-    <td id="a4" ></td>
-    <td id="b4" class="ch_black"></td>
-    <td id="c4"></td>
-	<td id="d4" class="ch_black"></td>
-    <td id="e4"></td>
-    <td id="f4" class="ch_black"></td>
-	<td id="g4"></td>
-    <td id="h4" class="ch_black"></td>
-  </tr>
-  <tr>
-    <td id="a3" class="ch_black"></td>
-    <td id="b3"> </td>
-    <td id="c3" class="ch_black"></td>
-	<td id="d3" ></td>
-    <td id="e3" class="ch_black"></td>
-    <td id="f3"></td>
-	<td id="g3" class="ch_black"></td>
-    <td id="h3"></td>
-  </tr>
-  <tr>
-    <td id="a2" ></td>
-    <td id="b2" class="ch_black"></td>
-    <td id="c2"></td>
-	<td id="d2" class="ch_black"></td>
-    <td id="e2"></td>
-    <td id="f2" class="ch_black"></td>
-	<td id="g2"></td>
-    <td id="h2" class="ch_black"></td>
-  </tr>
-  <tr>
-    <td id="a1" class="ch_black"></td>
-    <td id="b1"> </td>
-    <td id="c1" class="ch_black"></td>
-	<td id="d1" ></td>
-    <td id="e1" class="ch_black"></td>
-    <td id="f1"></td>
-	<td id="g1" class="ch_black"></td>
-    <td id="h1"></td>
-  </tr>
-</table>
+ </table>
+		
 
 <script>
 const pieces = [
@@ -164,16 +207,19 @@ let squaresClickable = false;
 let selectedPiece = null;
 
 //This used for Quenn and King side castling check
-let Qw_piecesHaveMoved = false;
-let Kw_piecesHaveMoved = false;
-let Qb_piecesHaveMoved = false;
-let Kb_piecesHaveMoved = false;
+let Qw_piecesHaveMoved = [];
+let Kw_piecesHaveMoved = [];
+
+let Qb_piecesHaveMoved = [];
+let Kb_piecesHaveMoved = [];
+
+
 
 //This function handles the display of pieces, it's used to refresh the display after a move is done
 function displayPieces() {
 	
 //this few lines clean the display, so if a move is made the piece won't duplicate
-    const allCells = document.querySelectorAll('td');
+    const allCells = document.querySelectorAll('td[id]');//Is clears only td with ids, if you remove this, it will clear every cell including the coords
     allCells.forEach(cell => {
         cell.innerHTML = '';
     });
@@ -187,13 +233,6 @@ function displayPieces() {
     });
 }
 
-/*function selectPiece(pieceId) {
-	event.stopPropagation();
-    selectedPiece = pieces.find(p => p.id === pieceId);
-    console.log('Selected:', selectedPiece.name, 'at', selectedPiece.location);
-	squaresClickable = true;
-}*/
-
 //Checks all the available moves
 function checkMoves() {
 	pieces.forEach(piece =>{
@@ -205,83 +244,31 @@ function checkMoves() {
 		
 			//WHITE PAWN MOVES
 			if(piece.color === 'white') {
-				// White pawns move "up" (rank numbers are being added up)
+				// Check diagonal captures
+					const leftCapture = String.fromCharCode(currentFile.charCodeAt(0) + 1) + (currentRank + 1); 
+					const rightCapture = String.fromCharCode(currentFile.charCodeAt(0) - 1) + (currentRank + 1); 
+    
+					[leftCapture, rightCapture].forEach(square => {
 					
-				// Check one square forward
-				const oneForward = currentFile + (currentRank + 1);
-				const pieceOneForward = pieces.find(p => p.location === oneForward);
-					
-				if(!pieceOneForward) {  // No piece blocking
-					contestedSquares.push({
-						name: piece.id,
-						contestedSquare: oneForward
-					});
-					
-					 // Check two squares forward (only if one square is clear)
-					if(currentRank === 2) {
-					const twoForward = currentFile + (currentRank + 2);
-					const pieceTwoForward = pieces.find(p => p.location === twoForward);
-					
-						if(!pieceTwoForward) {
 							contestedSquares.push({
 								name: piece.id,
-								contestedSquare: twoForward
+								contestedSquare: square
 							});
-						}
-					}
-				} 
-				
-				// Check diagonal captures
-				const leftCapture = String.fromCharCode(currentFile.charCodeAt(0) - 1) + (currentRank + 1);
-				const rightCapture = String.fromCharCode(currentFile.charCodeAt(0) + 1) + (currentRank + 1);
-        
-				[leftCapture, rightCapture].forEach(square => {
-					const pieceOnSquare = pieces.find(p => p.location === square);
-						if(pieceOnSquare && pieceOnSquare.color !== piece.color) {
-							contestedPieces.push({
-								name: pieceOnSquare.id,
-								contestedPieceLoc: square
-							});
-						}
 					});
         
 				} 
 				//BLACK PAWN MOVES
-				else {
-					const oneForward = currentFile + (currentRank - 1);
-					const pieceOneForward = pieces.find(p => p.location === oneForward);
-					
-					if(!pieceOneForward) {  // No piece blocking
-						contestedSquares.push({
-						name: piece.id,
-						contestedSquare: oneForward
-					});
-					
-						 // Check two squares forward (only if one square is clear)
-						if(currentRank === 7) {
-						const twoForward = currentFile + (currentRank - 2);
-						const pieceTwoForward = pieces.find(p => p.location === twoForward);
-							if(!pieceTwoForward) {
-								contestedSquares.push({
-								name: piece.id,
-								contestedSquare: twoForward
-								});
-							}
-						}
-					} 
-					
+				else {					
 					// Check diagonal captures
-					const leftCapture = String.fromCharCode(currentFile.charCodeAt(0) - 1) + (currentRank - 1);
-					const rightCapture = String.fromCharCode(currentFile.charCodeAt(0) + 1) + (currentRank - 1);
-        
+					const leftCapture = String.fromCharCode(currentFile.charCodeAt(0) - 1) + (currentRank - 1); 
+					const rightCapture = String.fromCharCode(currentFile.charCodeAt(0) + 1) + (currentRank - 1); 
+    
 					[leftCapture, rightCapture].forEach(square => {
-					const pieceOnSquare = pieces.find(p => p.location === square);
-						if(pieceOnSquare && pieceOnSquare.color !== piece.color) {
-							contestedPieces.push({
-								name: pieceOnSquare.id,
-								contestedPieceLoc: square
+					
+							contestedSquares.push({
+								name: piece.id,
+								contestedSquare: square
 							});
-						}
 					});
 				}
 		}
@@ -323,11 +310,246 @@ function checkMoves() {
 						}
 					}
 				});
-				console.log(contestedPieces);
 			}
 			
+		if(piece.name === 'bishop'){
+				
+				let rightDiagonalUp = [];
+				let leftDiagonalUp = [];
+				let leftDiagonalDown = [];
+				let rightDiagonalDown = [];
+								
+				for(let i=1; i<9; i++){
+					rightDiagonalUp.push(String.fromCharCode(currentFile.charCodeAt(0) + i) + (currentRank + i));
+					const pieceOnSquare = pieces.find(p => p.location === rightDiagonalUp[i-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== piece.color){
+							const cell = document.getElementById(rightDiagonalUp[i-1]);
+								if(cell){
+									contestedPieces.push({
+										name: pieceOnSquare.id,
+										contestedPieceLoc: rightDiagonalUp[i-1]
+									});
+								}
+								
+						}
+						break;
+					}
+						else{
+							const cell = document.getElementById(rightDiagonalUp[i-1]);
+								if(cell) {
+									contestedSquares.push({
+										name: piece.id,
+										contestedSquare: rightDiagonalUp[i-1]
+									});
+								}
+						}									
+				}
+				
+				for(let j=1; j<9; j++){
+					leftDiagonalUp.push(String.fromCharCode(currentFile.charCodeAt(0) - j) + (currentRank + j));
+					const pieceOnSquare = pieces.find(p => p.location === leftDiagonalUp[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== piece.color){
+							const cell = document.getElementById(leftDiagonalUp[j-1]);
+								if(cell){
+									contestedPieces.push({
+										name: pieceOnSquare.id,
+										contestedPieceLoc: leftDiagonalUp[j-1]
+									});
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(leftDiagonalUp[j-1]);
+							if(cell) {
+								contestedSquares.push({
+									name: piece.id,
+									contestedSquare: leftDiagonalUp[j-1]
+								});
+							}
+					}					
+				}
+				
+				for(let j=1; j<9; j++){
+					leftDiagonalDown.push(String.fromCharCode(currentFile.charCodeAt(0) - j) + (currentRank - j));
+					const pieceOnSquare = pieces.find(p => p.location === leftDiagonalDown[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== piece.color){
+							const cell = document.getElementById(leftDiagonalDown[j-1]);
+								if(cell){
+									contestedPieces.push({
+										name: pieceOnSquare.id,
+										contestedPieceLoc: leftDiagonalDown[j-1]
+									});
+								}								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(leftDiagonalDown[j-1]);
+							if(cell) {
+								contestedSquares.push({
+									name: piece.id,
+									contestedSquare: leftDiagonalDown[j-1]
+								});
+							}
+					}					
+				}
+				
+				for(let j=1; j<9; j++){
+					rightDiagonalDown.push(String.fromCharCode(currentFile.charCodeAt(0) + j) + (currentRank - j));
+					const pieceOnSquare = pieces.find(p => p.location === rightDiagonalDown[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== piece.color){
+							const cell = document.getElementById(rightDiagonalDown[j-1]);
+								if(cell){
+									contestedPieces.push({
+										name: pieceOnSquare.id,
+										contestedPieceLoc: rightDiagonalDown[j-1]
+									});
+								}							
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(rightDiagonalDown[j-1]);
+							if(cell) {
+								contestedSquares.push({
+									name: piece.id,
+									contestedSquare: rightDiagonalDown[j-1]
+								});
+							}
+					}
+					
+				}				
+			}	
 	
+		if(piece.name === 'rook'){
+				
+				let = upLine = [];
+				let = downLine = [];
+				let = leftLine = [];
+				let = rightLine = [];
+				
+				for(let j=1; j<9; j++){
+					upLine.push(currentFile + (currentRank + j));
+					const pieceOnSquare = pieces.find(p => p.location === upLine[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== piece.color){
+							const cell = document.getElementById(upLine[j-1]);
+								if(cell){
+									contestedPieces.push({
+										name: pieceOnSquare.id,
+										contestedPieceLoc: upLine[j-1]
+									});
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(upLine[j-1]);
+							if(cell) {
+								contestedSquares.push({
+										name: piece.id,
+										contestedSquare: upLine[j-1]
+									});
+							}
+					}
+					
+				}
+				
+				for(let j=1; j<9; j++){
+					downLine.push(currentFile + (currentRank - j));
+					const pieceOnSquare = pieces.find(p => p.location === downLine[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== piece.color){
+							const cell = document.getElementById(downLine[j-1]);
+								if(cell){
+									contestedPieces.push({
+										name: pieceOnSquare.id,
+										contestedPieceLoc: downLine[j-1]
+									});
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(downLine[j-1]);
+							if(cell) {
+								contestedSquares.push({
+									name: piece.id,
+									contestedSquare: downLine[j-1]
+								});
+							}
+					}
+					
+				}
+				
+				for(let j=1; j<9; j++){
+					leftLine.push(String.fromCharCode(currentFile.charCodeAt(0) - j) + currentRank);
+					const pieceOnSquare = pieces.find(p => p.location === leftLine[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== piece.color){
+							const cell = document.getElementById(leftLine[j-1]);
+								if(cell){
+									contestedPieces.push({
+										name: pieceOnSquare.id,
+										contestedPieceLoc: leftLine[j-1]
+									});
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(leftLine[j-1]);
+							if(cell) {
+								contestedSquares.push({
+									name: piece.id,
+									contestedSquare: leftLine[j-1]
+								});
+							}
+					}
+					
+				}
+				
+				for(let j=1; j<9; j++){
+					rightLine.push(String.fromCharCode(currentFile.charCodeAt(0) + j) + currentRank);
+					const pieceOnSquare = pieces.find(p => p.location === rightLine[j-1]);
+					if(pieceOnSquare){
+						if(pieceOnSquare && pieceOnSquare.color !== piece.color){
+							const cell = document.getElementById(rightLine[j-1]);
+								if(cell){
+									contestedPieces.push({
+										name: pieceOnSquare.id,
+										contestedPieceLoc: rightLine[j-1]
+									});
+								}
+								
+						}
+						break;
+					}
+					else{
+						const cell = document.getElementById(rightLine[j-1]);
+							if(cell) {
+								contestedSquares.push({
+									name: piece.id,
+									contestedSquare: rightLine[j-1]
+								});
+							}
+					}
+					
+				}
+				
+			}
 	});
+	
+	//console.log(contestedSquares);
 }
 
 //Listens for a click on the cell, when a click happens, it sends the clicked cell id to function
@@ -1103,32 +1325,58 @@ function isKingInCheck(kingColor) {
    return contestedPieces.some(contest => contest.name === king.id);
 }
 
+// Function to check if a square is under attack by opponent
+function isSquareContested(square, byColor) {
+    return contestedSquares.some(contest => {
+        const attackingPiece = pieces.find(p => p.id === contest.name);
+        return contest.contestedSquare === square && 
+               attackingPiece && 
+               attackingPiece.color === byColor;
+    });
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////AS OF NOW THIS FUNCTION HANDLES MOVE'S END, meaning when this function is complete the display is reset
 /////ALSO CASTLING
-function moveToSquare(cellId) {
+function moveToSquare(cellId) { //cellId if id of a cell for piece to go
     if (selectedPiece && squaresClickable) {
         
-		//QUEEN SIDE CASTLING	
-		if(isKingInCheck('white')){
-			console.log('CONTESTED!')
-		}
-			
+		//This is used for checking contested squares and attacked pieces. Doing this before anything else to be safe
+		contestedPieces.length = 0;
+		contestedSquares.length = 0;
+		checkMoves();
+		
 		const whiteRook = pieces.find(p => p.id === 'w-Q-rook');
 				
-		if(selectedPiece.name == 'king' && selectedPiece.location == 'd1' && whiteRook.location == 'a1' && isKingInCheck('white') == false){
+		if(selectedPiece.name == 'king' && 
+			cellId == 'd1' && //
+			selectedPiece.location == 'e1' && 
+			whiteRook.location == 'a1' && 
+			isKingInCheck('white') == false && 
+			Qw_piecesHaveMoved.length === 2 &&
+			!isSquareContested('d1', 'black') &&
+			!isSquareContested('c1', 'black')){
 			
-			selectedPiece.location = 'b1';
-			whiteRook.location = 'c1';
+			selectedPiece.location = 'c1';
+			whiteRook.location = 'd1';
 		} 
-		
-		selectedPiece.location = cellId;
-		
-		if(selectPiece.id == 'W-Q-bishop' || selectPiece.id == 'W-Q-knight'){
+		else if(selectedPiece.name == 'king' && isSquareContested(cellId, 'black') && selectedPiece.color == 'white'){
+			console.log('That\'s a check!');
 			
+			return;
 		}
-		if(selectPiece.id == 'B-Q-bishop' || selectPiece.id == 'B-Q-knight'){
-				
+		else{
+			selectedPiece.location = cellId;
+			//console.log(selectedPiece.name, isSquareContested(cellId, 'black' && selectedPiece.color == 'white');
+		}
+		
+		//both ifs check is black and white queen side pieces have moved, to perform castling
+		if(selectedPiece.id == 'w-Q-bishop' || selectedPiece.id == 'w-Q-knight'){
+			Qw_piecesHaveMoved.push(selectedPiece.id);
+			console.log(Qw_piecesHaveMoved.length);
+		}
+		if(selectedPiece.id == 'b-Q-bishop' || selectedPiece.id == 'b-Q-knight'){
+			Qb_piecesHaveMoved.push(selectedPiece.id);
 		}
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////
@@ -1137,10 +1385,15 @@ function moveToSquare(cellId) {
         selectedPiece = null; // Deselect
 		squaresClickable = false;
 		
-		contestedPieces = [];
-		contestedSquares = [];
-		
+		//cleaning up again
+		contestedPieces.length = 0;
+		contestedSquares.length = 0;
 		checkMoves();
+
+		//QUEEN SIDE CASTLING	
+		if(isKingInCheck('white')){
+			console.log('Check!')
+		}
     }
 }
 
